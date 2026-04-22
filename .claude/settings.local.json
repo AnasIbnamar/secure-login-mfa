@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const p=require\\('./server/node_modules/bcrypt/package.json'\\); console.log\\('bcrypt:', p.version\\)\")"
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const speakeasy = require('speakeasy');
 const prisma = require('../config/db');
 const { registerSchema, loginSchema } = require('../utils/authValidation');
@@ -195,7 +196,7 @@ const verifyLoginMFA = async (req, res) => {
     }
 
     const tempToken = authHeader.split(' ')[1];
-    const decoded = require('jsonwebtoken').verify(tempToken, process.env.JWT_SECRET);
+    const decoded = jwt.verify(tempToken, process.env.JWT_SECRET);
 
     if (decoded.purpose !== 'mfa-login') {
       return res.status(401).json({
