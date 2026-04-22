@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const mfaRoutes = require('./routes/mfaRoutes');
-const prisma = require('./db');
+const prisma = require('./config/db');
 
 const app = express();
 
