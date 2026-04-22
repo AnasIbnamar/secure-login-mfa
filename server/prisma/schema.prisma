@@ -4,20 +4,19 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {
-  id                   String    @id @default(uuid())
-  name                 String
-  email                String    @unique
-  passwordHash         String
-  emailVerified        Boolean   @default(false)
-  mfaEnabled           Boolean   @default(false)
-  mfaSecret            String?
-  failedLoginAttempts  Int       @default(0)
-  lockedUntil          DateTime?
-  role                 String    @default("user")
-  createdAt            DateTime  @default(now())
-  updatedAt            DateTime  @updatedAt
+  id                  String   @id @default(uuid())
+  name                String
+  email               String   @unique
+  passwordHash        String
+  emailVerified       Boolean  @default(false)
+  mfaEnabled          Boolean  @default(false)
+  mfaSecret           String?
+  failedLoginAttempts Int      @default(0)
+  lockedUntil         DateTime?
+  role                String   @default("user")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 }
