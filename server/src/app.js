@@ -4,7 +4,6 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const mfaRoutes = require('./routes/mfaRoutes');
-const prisma = require('./config/db');
 
 const app = express();
 
@@ -42,26 +41,6 @@ app.get('/api/health', (req, res) => {
     success: true,
     message: 'Server is running',
   });
-});
-
-app.get('/api/db-test', async (req, res) => {
-  try {
-    const usersCount = await prisma.user.count();
-
-    return res.status(200).json({
-      success: true,
-      message: 'Database connected successfully',
-      usersCount,
-    });
-  } catch (error) {
-    console.error('DB TEST ERROR:', error);
-
-    return res.status(500).json({
-      success: false,
-      message: 'Database connection failed',
-      error: error.message,
-    });
-  }
 });
 
 app.use('/api/auth', authRoutes);
